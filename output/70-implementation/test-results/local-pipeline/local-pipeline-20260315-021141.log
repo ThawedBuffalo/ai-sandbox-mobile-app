@@ -1,0 +1,170 @@
+[02:11:41] [INFO] START stage: preflight
+[02:11:42] [INFO] PASS stage: preflight
+[02:11:42] [INFO] START stage: build
+
+> devconn-frontend-implementation@0.1.0 build
+> npm run build --workspace ui && npm run build --workspace server
+
+
+> frontend-ui@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v6.4.1 building for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.41 kB │ gzip:  0.27 kB
+dist/assets/index-8B7GIZPo.css    2.15 kB │ gzip:  1.01 kB
+dist/assets/index-BRDoIdcW.js   260.14 kB │ gzip: 79.85 kB
+✓ built in 453ms
+
+> frontend-server@0.1.0 build
+> tsc -p tsconfig.json
+
+[02:11:44] [INFO] PASS stage: build
+[02:11:44] [INFO] START stage: docker-build
+
+> devconn-frontend-implementation@0.1.0 docker:build
+> docker build -t devconn-frontend-node:local .
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 566B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:20-alpine
+#2 DONE 0.9s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 125B done
+#3 DONE 0.0s
+
+#4 [deps 1/6] FROM docker.io/library/node:20-alpine@sha256:b88333c42c23fbd91596ebd7fd10de239cedab9617de04142dde7315e3bc0afa
+#4 resolve docker.io/library/node:20-alpine@sha256:b88333c42c23fbd91596ebd7fd10de239cedab9617de04142dde7315e3bc0afa done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 284.24kB done
+#5 DONE 0.0s
+
+#6 [deps 2/6] WORKDIR /app
+#6 CACHED
+
+#7 [deps 3/6] COPY package.json ./
+#7 DONE 0.0s
+
+#8 [deps 4/6] COPY ui/package.json ./ui/package.json
+#8 DONE 0.0s
+
+#9 [deps 5/6] COPY server/package.json ./server/package.json
+#9 DONE 0.0s
+
+#10 [deps 6/6] RUN npm install
+#10 19.85 npm warn deprecated whatwg-encoding@2.0.0: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+#10 19.91 npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead
+#10 19.92 npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+#10 20.30 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+#10 20.44 npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+#10 22.47 
+#10 22.47 added 524 packages, and audited 527 packages in 22s
+#10 22.47 
+#10 22.47 67 packages are looking for funding
+#10 22.47   run `npm fund` for details
+#10 22.47 
+#10 22.47 4 low severity vulnerabilities
+#10 22.47 
+#10 22.47 To address all issues (including breaking changes), run:
+#10 22.47   npm audit fix --force
+#10 22.47 
+#10 22.47 Run `npm audit` for details.
+#10 22.47 npm notice
+#10 22.47 npm notice New major version of npm available! 10.8.2 -> 11.11.1
+#10 22.47 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.1
+#10 22.47 npm notice To update run: npm install -g npm@11.11.1
+#10 22.47 npm notice
+#10 DONE 22.6s
+
+#11 [build 1/3] WORKDIR /app
+#11 DONE 0.1s
+
+#12 [build 2/3] COPY . .
+#12 DONE 0.0s
+
+#13 [build 3/3] RUN npm run build
+#13 0.188 
+#13 0.188 > devconn-frontend-implementation@0.1.0 build
+#13 0.188 > npm run build --workspace ui && npm run build --workspace server
+#13 0.188 
+#13 0.272 
+#13 0.272 > frontend-ui@0.1.0 build
+#13 0.272 > tsc --noEmit && vite build
+#13 0.272 
+#13 1.374 vite v6.4.1 building for production...
+#13 1.410 transforming...
+#13 1.963 ✓ 54 modules transformed.
+#13 2.058 rendering chunks...
+#13 2.061 computing gzip size...
+#13 2.067 dist/index.html                   0.41 kB │ gzip:  0.27 kB
+#13 2.067 dist/assets/index-8B7GIZPo.css    2.15 kB │ gzip:  1.01 kB
+#13 2.067 dist/assets/index-BRDoIdcW.js   260.14 kB │ gzip: 79.85 kB
+#13 2.067 ✓ built in 678ms
+#13 2.159 
+#13 2.159 > frontend-server@0.1.0 build
+#13 2.159 > tsc -p tsconfig.json
+#13 2.159 
+#13 DONE 2.9s
+
+#14 [runtime 4/5] COPY --from=build /app/ui/dist ./ui/dist
+#14 CACHED
+
+#15 [runtime 3/5] COPY --from=build /app/server/dist ./server/dist
+#15 CACHED
+
+#16 [runtime 5/5] COPY --from=deps /app/node_modules ./node_modules
+#16 CACHED
+
+#17 exporting to image
+#17 exporting layers done
+#17 exporting manifest sha256:c4037b96e4ca974881bc055184908e95b42f2b3c955b5dc3ba0b7326bf8be597 done
+#17 exporting config sha256:58335f696943b5b914ede36c9d7a417af5fc0aae65ccb04effef8cf90b89279d done
+#17 exporting attestation manifest sha256:d36a0aaf6321c60aa36eb19738733897bce28b854fcacaa72c150bd87d4ee5fe done
+#17 exporting manifest list sha256:cd0294b55408ca1e66f0b38d8fece76f7886ec5aee2be79de9811eb59e791bd7 done
+#17 naming to docker.io/library/devconn-frontend-node:local done
+#17 unpacking to docker.io/library/devconn-frontend-node:local done
+#17 DONE 0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/tdvqpx8855aexuftkzgi7wtf4
+[02:12:11] [INFO] PASS stage: docker-build
+[02:12:11] [INFO] START stage: kind-load
+
+> devconn-frontend-implementation@0.1.0 kind:load
+> kind load docker-image devconn-frontend-node:local --name ${KIND_CLUSTER_NAME:-devcon-local}
+
+Image: "devconn-frontend-node:local" with ID "sha256:cd0294b55408ca1e66f0b38d8fece76f7886ec5aee2be79de9811eb59e791bd7" not yet present on node "devcon-local-control-plane", loading...
+[02:12:13] [INFO] PASS stage: kind-load
+[02:12:13] [INFO] START stage: k8s-apply
+
+> devconn-frontend-implementation@0.1.0 k8s:apply
+> kubectl apply -f k8s/local/namespace.yaml && kubectl apply -f k8s/local/configmap.yaml && kubectl apply -f k8s/local/deployment.yaml && kubectl apply -f k8s/local/service.yaml
+
+namespace/frontend-local unchanged
+configmap/frontend-config unchanged
+deployment.apps/frontend-deployment unchanged
+service/frontend-service unchanged
+[02:12:13] [INFO] PASS stage: k8s-apply
+[02:12:13] [INFO] START stage: k8s-readiness
+deployment "frontend-deployment" successfully rolled out
+
+> devconn-frontend-implementation@0.1.0 k8s:status
+> kubectl -n frontend-local get pods,svc
+
+NAME                                       READY   STATUS    RESTARTS   AGE
+pod/frontend-deployment-695cd5f586-c2jqp   1/1     Running   0          21m
+
+NAME                       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/frontend-service   ClusterIP   10.96.247.121   <none>        80/TCP    21m
+[02:12:14] [INFO] PASS stage: k8s-readiness
+[02:12:14] [INFO] Summary written to /Users/ca34792/Library/CloudStorage/OneDrive-DeltaDentalofCalifornia/Documents/Workspace/devcon2026/DevConnDemo2/70-implementation/test-results/local-pipeline/local-pipeline-20260315-021141.md
+[02:12:14] [INFO] Pipeline completed with 6 passed stage(s), 0 failed stage(s).

@@ -1,0 +1,201 @@
+[01:52:02] [INFO] START stage: preflight
+[01:52:02] [INFO] PASS stage: preflight
+[01:52:02] [INFO] START stage: unit-and-integration-tests
+
+> devconn-frontend-implementation@0.1.0 test
+> npm run test --workspace ui && npm run test --workspace server
+
+
+> frontend-ui@0.1.0 test
+> jest --config jest.config.cjs --runInBand
+
+PASS src/__tests__/EstimatorCard.test.tsx
+  EstimatorCard
+    ✓ renders heading and inputs (34 ms)
+    ✓ shows estimate result when API succeeds (85 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.602 s, estimated 1 s
+Ran all test suites.
+
+> frontend-server@0.1.0 test
+> jest --config jest.config.cjs --runInBand
+
+PASS src/__tests__/app.test.ts
+  server
+    ✓ returns health status (10 ms)
+    ✓ returns estimate response (8 ms)
+    ✓ rejects invalid request (3 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        0.686 s, estimated 1 s
+Ran all test suites.
+[01:52:04] [INFO] PASS stage: unit-and-integration-tests
+[01:52:04] [INFO] START stage: e2e-tests
+
+> devconn-frontend-implementation@0.1.0 test:e2e
+> playwright test
+
+
+Running 2 tests using 2 workers
+
+  ✓  2 tests/e2e/cost-estimator.validation.spec.ts:3:5 › shows validation error for invalid treatment amount (702ms)
+  ✓  1 tests/e2e/cost-estimator.spec.ts:3:5 › cost estimator basic flow (800ms)
+
+  2 passed (2.2s)
+[01:52:07] [INFO] PASS stage: e2e-tests
+[01:52:07] [INFO] START stage: build
+
+> devconn-frontend-implementation@0.1.0 build
+> npm run build --workspace ui && npm run build --workspace server
+
+
+> frontend-ui@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v6.4.1 building for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.41 kB │ gzip:  0.27 kB
+dist/assets/index-8B7GIZPo.css    2.15 kB │ gzip:  1.01 kB
+dist/assets/index-BRDoIdcW.js   260.14 kB │ gzip: 79.85 kB
+✓ built in 468ms
+
+> frontend-server@0.1.0 build
+> tsc -p tsconfig.json
+
+[01:52:09] [INFO] PASS stage: build
+[01:52:09] [INFO] START stage: docker-build
+
+> devconn-frontend-implementation@0.1.0 docker:build
+> docker build -t devconn-frontend-node:local .
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 566B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:20-alpine
+#2 DONE 0.5s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 125B done
+#3 DONE 0.0s
+
+#4 [deps 1/6] FROM docker.io/library/node:20-alpine@sha256:b88333c42c23fbd91596ebd7fd10de239cedab9617de04142dde7315e3bc0afa
+#4 resolve docker.io/library/node:20-alpine@sha256:b88333c42c23fbd91596ebd7fd10de239cedab9617de04142dde7315e3bc0afa done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 275.39kB done
+#5 DONE 0.0s
+
+#6 [deps 2/6] WORKDIR /app
+#6 CACHED
+
+#7 [deps 6/6] RUN npm install
+#7 CACHED
+
+#8 [deps 3/6] COPY package.json ./
+#8 CACHED
+
+#9 [deps 4/6] COPY ui/package.json ./ui/package.json
+#9 CACHED
+
+#10 [deps 5/6] COPY server/package.json ./server/package.json
+#10 CACHED
+
+#11 [build 1/3] WORKDIR /app
+#11 CACHED
+
+#12 [build 2/3] COPY . .
+#12 DONE 0.0s
+
+#13 [build 3/3] RUN npm run build
+#13 0.176 
+#13 0.176 > devconn-frontend-implementation@0.1.0 build
+#13 0.176 > npm run build --workspace ui && npm run build --workspace server
+#13 0.176 
+#13 0.267 
+#13 0.267 > frontend-ui@0.1.0 build
+#13 0.267 > tsc --noEmit && vite build
+#13 0.267 
+#13 1.579 vite v6.4.1 building for production...
+#13 1.620 transforming...
+#13 2.196 ✓ 54 modules transformed.
+#13 2.290 rendering chunks...
+#13 2.294 computing gzip size...
+#13 2.302 dist/index.html                   0.41 kB │ gzip:  0.27 kB
+#13 2.302 dist/assets/index-8B7GIZPo.css    2.15 kB │ gzip:  1.01 kB
+#13 2.302 dist/assets/index-BRDoIdcW.js   260.14 kB │ gzip: 79.85 kB
+#13 2.302 ✓ built in 707ms
+#13 2.431 
+#13 2.431 > frontend-server@0.1.0 build
+#13 2.431 > tsc -p tsconfig.json
+#13 2.431 
+#13 DONE 3.2s
+
+#14 [runtime 3/5] COPY --from=build /app/server/dist ./server/dist
+#14 CACHED
+
+#15 [runtime 4/5] COPY --from=build /app/ui/dist ./ui/dist
+#15 CACHED
+
+#16 [runtime 5/5] COPY --from=deps /app/node_modules ./node_modules
+#16 CACHED
+
+#17 exporting to image
+#17 exporting layers done
+#17 exporting manifest sha256:09bf075ede8393055fb94c78d1c72ab17421babe2b513f42b51cb2cbfc9f3587 done
+#17 exporting config sha256:96949809908ee120bffa132cdb28846bdef7162420d5538c112a1c94f8a27623 done
+#17 exporting attestation manifest sha256:95c0ddc0301f7153544019ae1716ed0be1aa3d9351a8b1d43d908ee83a88e29e done
+#17 exporting manifest list sha256:bb3f822a75d3c4513c4bd06c1edbb778f991c96c1fb2814d836beae6a449fc0c done
+#17 naming to docker.io/library/devconn-frontend-node:local done
+#17 unpacking to docker.io/library/devconn-frontend-node:local done
+#17 DONE 0.0s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/is6eeja4t6kez3s5uel5r5hdh
+[01:52:14] [INFO] PASS stage: docker-build
+[01:52:14] [INFO] START stage: kind-load
+
+> devconn-frontend-implementation@0.1.0 kind:load
+> kind load docker-image devconn-frontend-node:local --name ${KIND_CLUSTER_NAME:-devcon-local}
+
+Image: "devconn-frontend-node:local" with ID "sha256:bb3f822a75d3c4513c4bd06c1edbb778f991c96c1fb2814d836beae6a449fc0c" not yet present on node "devcon-local-control-plane", loading...
+[01:52:15] [INFO] PASS stage: kind-load
+[01:52:15] [INFO] START stage: k8s-apply
+
+> devconn-frontend-implementation@0.1.0 k8s:apply
+> kubectl apply -f k8s/local/namespace.yaml && kubectl apply -f k8s/local/configmap.yaml && kubectl apply -f k8s/local/deployment.yaml && kubectl apply -f k8s/local/service.yaml
+
+namespace/frontend-local unchanged
+configmap/frontend-config unchanged
+deployment.apps/frontend-deployment unchanged
+service/frontend-service unchanged
+[01:52:16] [INFO] PASS stage: k8s-apply
+[01:52:16] [INFO] START stage: k8s-readiness
+deployment "frontend-deployment" successfully rolled out
+
+> devconn-frontend-implementation@0.1.0 k8s:status
+> kubectl -n frontend-local get pods,svc
+
+NAME                                       READY   STATUS    RESTARTS   AGE
+pod/frontend-deployment-695cd5f586-c2jqp   1/1     Running   0          86s
+
+NAME                       TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/frontend-service   ClusterIP   10.96.247.121   <none>        80/TCP    86s
+[01:52:16] [INFO] PASS stage: k8s-readiness
+[01:52:16] [INFO] START stage: smoke-health
+Forwarding from 127.0.0.1:8080 -> 3001
+Forwarding from [::1]:8080 -> 3001
+Handling connection for 8080
+[01:52:19] [INFO] PASS stage: smoke-health
+[01:52:19] [INFO] Summary written to /Users/ca34792/Library/CloudStorage/OneDrive-DeltaDentalofCalifornia/Documents/Workspace/devcon2026/DevConnDemo2/70-implementation/test-results/local-pipeline/local-pipeline-20260315-015202.md
+[01:52:19] [INFO] Pipeline completed with 9 passed stage(s), 0 failed stage(s).

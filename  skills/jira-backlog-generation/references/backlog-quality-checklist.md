@@ -1,0 +1,10 @@
+- Every Story has a persona, action, and business value statement
+- Every Story has at least one acceptance criterion in Gherkin format
+- Every Gherkin scenario has Given, When, and Then clauses
+- Every acceptance criterion is testable and observable
+- NFRs are separate tasks, not embedded in functional stories
+- Every NFR has a measurable acceptance threshold
+- Epic scope explicitly states what is in scope and out of scope
+- Assumptions are documented for any gap in the source PRD
+- No story depends on scope that is marked out of scope
+- Jira issue keys are recorded if creation was performed

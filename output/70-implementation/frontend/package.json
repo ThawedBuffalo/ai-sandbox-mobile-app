@@ -1,0 +1,37 @@
+{
+  "name": "devconn-frontend-implementation",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "ui",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,ui -c green,blue \"npm run dev --workspace server\" \"npm run dev --workspace ui\"",
+    "dev:ui": "npm run dev --workspace ui",
+    "dev:server": "npm run dev --workspace server",
+    "preflight:local": "bash ./scripts/local-pipeline.sh preflight",
+    "local:pipeline": "bash ./scripts/local-pipeline.sh full",
+    "local:pipeline:tests": "bash ./scripts/local-pipeline.sh tests",
+    "local:pipeline:deploy": "bash ./scripts/local-pipeline.sh deploy",
+    "local:pipeline:smoke": "bash ./scripts/local-pipeline.sh smoke",
+    "local:pipeline:teardown": "bash ./scripts/local-pipeline.sh teardown",
+    "build": "npm run build --workspace ui && npm run build --workspace server",
+    "test": "npm run test --workspace ui && npm run test --workspace server",
+    "test:e2e": "playwright test",
+    "test:all": "npm run test && npm run test:e2e",
+    "perf:test": "bash ./scripts/run-k6.sh",
+    "perf:report": "node ./scripts/generate-performance-report.js --json-file ../test-results/performance/k6-summary.json --output-file ../test-results/performance/perf-latest.md",
+    "perf:summary": "npm run perf:report",
+    "perf:jira": "node ../../.github/scripts/jira-publish-performance-report.js --report-file ../test-results/performance/perf-latest.md --report-path 70-implementation/test-results/performance/perf-latest.md",
+    "docker:build": "docker build -t devconn-frontend-node:local .",
+    "kind:load": "kind load docker-image devconn-frontend-node:local --name ${KIND_CLUSTER_NAME:-devcon-local}",
+    "k8s:apply": "kubectl apply -f k8s/local/namespace.yaml && kubectl apply -f k8s/local/configmap.yaml && kubectl apply -f k8s/local/deployment.yaml && kubectl apply -f k8s/local/service.yaml",
+    "k8s:delete": "kubectl delete -f k8s/local --ignore-not-found",
+    "k8s:status": "kubectl -n frontend-local get pods,svc"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "concurrently": "^9.1.2"
+  }
+}

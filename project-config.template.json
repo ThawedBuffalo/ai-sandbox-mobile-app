@@ -1,0 +1,46 @@
+{
+  "_comment": "Copy this file to project-config.json and fill in your values. Secrets (API tokens) belong in .env, not here.",
+
+  "project": {
+    "name": "My Feature Name",
+    "description": "One-line description of the initiative"
+  },
+
+  "jira": {
+    "projectKey": "MYPROJECT",
+    "issueTypeReview": "Task",
+    "approvalWorkflow": {
+      "issueType": "Task",
+      "labels": ["approval-gate"],
+      "domainLabels": {
+        "architecture": "approval-architecture",
+        "security": "approval-security",
+        "compliance": "approval-compliance"
+      },
+      "transitionByDecision": {
+        "Draft": ["To Do", "Open"],
+        "In Review": ["In Review", "Review"],
+        "Changes Requested": ["Changes Requested", "Rework", "To Do", "Open"],
+        "Approved": ["Done", "Closed"],
+        "Approved with conditions": ["Done", "Closed"],
+        "Rejected": ["Rejected", "Declined"]
+      }
+    }
+  },
+
+  "confluence": {
+    "spaceKey": "MYSPACE",
+    "parentPageId": "000000000",
+    "parentPageUrl": "https://<tenant>.atlassian.net/wiki/spaces/<SPACE>/pages/<PAGE_ID>/<Page+Title>"
+  },
+
+  "miro": {
+    "boardUrl": "https://miro.com/app/board/<BOARD_ID>/",
+    "boardId": "<BOARD_ID>"
+  },
+
+  "figma": {
+    "fileUrl": "https://www.figma.com/design/<FILE_KEY>/<FileName>",
+    "fileKey": "<FILE_KEY>"
+  }
+}

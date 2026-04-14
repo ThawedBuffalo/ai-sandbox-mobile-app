@@ -1,0 +1,52 @@
+[01:51:48] [INFO] START stage: preflight
+[01:51:48] [INFO] PASS stage: preflight
+[01:51:48] [INFO] START stage: unit-and-integration-tests
+
+> devconn-frontend-implementation@0.1.0 test
+> npm run test --workspace ui && npm run test --workspace server
+
+
+> frontend-ui@0.1.0 test
+> jest --config jest.config.cjs --runInBand
+
+PASS src/__tests__/EstimatorCard.test.tsx
+  EstimatorCard
+    ✓ renders heading and inputs (35 ms)
+    ✓ shows estimate result when API succeeds (80 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.769 s, estimated 1 s
+Ran all test suites.
+
+> frontend-server@0.1.0 test
+> jest --config jest.config.cjs --runInBand
+
+PASS src/__tests__/app.test.ts
+  server
+    ✓ returns health status (10 ms)
+    ✓ returns estimate response (8 ms)
+    ✓ rejects invalid request (2 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        0.716 s, estimated 1 s
+Ran all test suites.
+[01:51:51] [INFO] PASS stage: unit-and-integration-tests
+[01:51:51] [INFO] START stage: e2e-tests
+
+> devconn-frontend-implementation@0.1.0 test:e2e
+> playwright test
+
+
+Running 2 tests using 2 workers
+
+  ✓  1 tests/e2e/cost-estimator.validation.spec.ts:3:5 › shows validation error for invalid treatment amount (723ms)
+  ✓  2 tests/e2e/cost-estimator.spec.ts:3:5 › cost estimator basic flow (765ms)
+
+  2 passed (2.3s)
+[01:51:54] [INFO] PASS stage: e2e-tests
+[01:51:54] [INFO] Summary written to /Users/ca34792/Library/CloudStorage/OneDrive-DeltaDentalofCalifornia/Documents/Workspace/devcon2026/DevConnDemo2/70-implementation/test-results/local-pipeline/local-pipeline-20260315-015147.md
+[01:51:54] [INFO] Pipeline completed with 3 passed stage(s), 0 failed stage(s).

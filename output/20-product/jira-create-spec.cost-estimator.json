@@ -1,0 +1,65 @@
+{
+  "prdPath": "20-product/prd-dental-cost-estimator.md",
+  "projectKey": "CXINIT2",
+  "run": {
+    "dryRun": false,
+    "storySummariesToCreate": [],
+    "nfrSummariesToCreate": []
+  },
+  "labels": ["cost-estimator", "phase1-demo"],
+  "epic": {
+    "issueType": "Feature",
+    "summary": "Dental Procedure Cost Estimator (Phase 1 Demo)",
+    "epicName": "Dental Cost Estimator",
+    "description": "Members need a self-service way to estimate out-of-pocket dental costs before treatment. Phase 1 delivers a synthetic-data-backed estimator for common procedures with coverage-tier-aware estimates, plan/member cost breakdowns, disclaimer visibility, and strict no-PII behavior.\n\nBusiness outcome: validate member cost-transparency value with demo-ready quality while meeting performance and privacy constraints."
+  },
+  "stories": [
+    {
+      "summary": "Procedure selection from supported common-procedure list",
+      "description": "As a dental plan member, I want to select a supported dental procedure so that I can request an out-of-pocket estimate.\n\nAcceptance criteria: Given the member opens the estimator and the approved common procedure list is available, when the member selects a supported procedure, then the selected procedure is captured for estimate retrieval."
+    },
+    {
+      "summary": "Coverage-tier-based out-of-pocket estimate retrieval",
+      "description": "As a dental plan member, I want an estimate calculated by coverage tier so that I can understand expected out-of-pocket cost.\n\nAcceptance criteria: Given a supported procedure is selected and a coverage tier is selected, when the member requests an estimate, then an out-of-pocket estimate is returned for that procedure and tier."
+    },
+    {
+      "summary": "Estimate result breakdown with compliance disclaimer",
+      "description": "As a dental plan member, I want a cost breakdown and disclaimer on results so that I can understand estimate context and limitations.\n\nAcceptance criteria: Given an estimate has been calculated, when the result is displayed, then the plan-paid amount and estimated member responsibility are shown and the approved estimate disclaimer is visible."
+    },
+    {
+      "summary": "Coverage-tier switch recalculates estimate",
+      "description": "As a dental plan member, I want to change coverage tiers and see updated estimates so that I can compare potential cost outcomes.\n\nAcceptance criteria: Given the member is viewing an estimate for a selected procedure, when the member changes to a different coverage tier, then the estimate is recalculated and the displayed breakdown updates accordingly."
+    },
+    {
+      "summary": "Graceful handling for unsupported estimate requests",
+      "description": "As a member or office staff user, I want clear error feedback for unsupported estimate requests so that I understand how to proceed.\n\nAcceptance criteria: Given a procedure outside the approved list is requested, when estimate is requested, then no estimate is returned and a clear recovery message prompts selecting a supported procedure."
+    }
+  ],
+  "nfrTasks": [
+    {
+      "summary": "Performance target for estimate retrieval",
+      "issueType": "Task",
+      "description": "Ensure estimate retrieval meets P95 response time under 300ms for supported procedures at expected demo load. Validate with reproducible benchmark report."
+    },
+    {
+      "summary": "No-PII enforcement across estimator flow",
+      "issueType": "Task",
+      "description": "Verify no PII is collected, persisted, or transmitted in estimator requests, logs, storage, and outbound traffic."
+    },
+    {
+      "summary": "Synthetic-data-only enforcement for Phase 1",
+      "issueType": "Task",
+      "description": "Validate that estimate calculations use synthetic datasets only and do not call enterprise claims or benefits APIs."
+    },
+    {
+      "summary": "WCAG 2.1 AA accessibility validation",
+      "issueType": "Task",
+      "description": "Validate procedure selection, tier switching, estimate display, and error states against WCAG 2.1 AA with automated and manual checks."
+    },
+    {
+      "summary": "Compliance disclaimer visibility validation",
+      "issueType": "Task",
+      "description": "Validate that approved disclaimer text is visible on every estimate result state and persists through tier changes."
+    }
+  ]
+}

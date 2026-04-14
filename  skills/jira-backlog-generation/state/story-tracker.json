@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "projectKey": "CXINIT2",
+      "prdPath": "20-product/prd-dental-cost-estimator.md",
+      "specPath": "20-product/jira-create-spec.cost-estimator.json",
+      "createdAt": "2026-03-13T07:27:59.081Z",
+      "lastUpdated": "2026-03-13T07:30:09.254Z",
+      "epic": {
+        "key": "CXINIT2-2726",
+        "summary": "Dental Procedure Cost Estimator (Phase 1 Demo)",
+        "issueType": "Feature",
+        "status": "created",
+        "createdAt": "2026-03-13T07:29:49.602Z"
+      },
+      "stories": [
+        {
+          "summary": "Procedure selection from supported common-procedure list",
+          "issueType": "Story",
+          "description": "As a dental plan member, I want to select a supported dental procedure so that I can request an out-of-pocket estimate.\n\nAcceptance criteria: Given the member opens the estimator and the approved common procedure list is available, when the member selects a supported procedure, then the selected procedure is captured for estimate retrieval.",
+          "labels": [],
+          "descriptionHash": "5bda13d67b52aef56f957cb88ba9c7e9da196835",
+          "status": "created",
+          "key": "CXINIT2-2727",
+          "createdAt": "2026-03-13T07:29:51.743Z",
+          "updatedAt": "2026-03-13T07:29:51.743Z"
+        },
+        {
+          "summary": "Coverage-tier-based out-of-pocket estimate retrieval",
+          "issueType": "Story",
+          "description": "As a dental plan member, I want an estimate calculated by coverage tier so that I can understand expected out-of-pocket cost.\n\nAcceptance criteria: Given a supported procedure is selected and a coverage tier is selected, when the member requests an estimate, then an out-of-pocket estimate is returned for that procedure and tier.",
+          "labels": [],
+          "descriptionHash": "aae65ff5ff4b310d7b8e629fa6347aaadc713a7e",
+          "status": "created",
+          "key": "CXINIT2-2728",
+          "createdAt": "2026-03-13T07:29:53.918Z",
+          "updatedAt": "2026-03-13T07:29:53.918Z"
+        },
+        {
+          "summary": "Estimate result breakdown with compliance disclaimer",
+          "issueType": "Story",
+          "description": "As a dental plan member, I want a cost breakdown and disclaimer on results so that I can understand estimate context and limitations.\n\nAcceptance criteria: Given an estimate has been calculated, when the result is displayed, then the plan-paid amount and estimated member responsibility are shown and the approved estimate disclaimer is visible.",
+          "labels": [],
+          "descriptionHash": "f7109ffb51f4a6487a04f6c492276c92836a07d9",
+          "status": "created",
+          "key": "CXINIT2-2729",
+          "createdAt": "2026-03-13T07:29:55.989Z",
+          "updatedAt": "2026-03-13T07:29:55.989Z"
+        },
+        {
+          "summary": "Coverage-tier switch recalculates estimate",
+          "issueType": "Story",
+          "description": "As a dental plan member, I want to change coverage tiers and see updated estimates so that I can compare potential cost outcomes.\n\nAcceptance criteria: Given the member is viewing an estimate for a selected procedure, when the member changes to a different coverage tier, then the estimate is recalculated and the displayed breakdown updates accordingly.",
+          "labels": [],
+          "descriptionHash": "afa459dcbb3427b59e024d823809be171a2fa372",
+          "status": "created",
+          "key": "CXINIT2-2730",
+          "createdAt": "2026-03-13T07:29:58.100Z",
+          "updatedAt": "2026-03-13T07:29:58.100Z"
+        },
+        {
+          "summary": "Graceful handling for unsupported estimate requests",
+          "issueType": "Story",
+          "description": "As a member or office staff user, I want clear error feedback for unsupported estimate requests so that I understand how to proceed.\n\nAcceptance criteria: Given a procedure outside the approved list is requested, when estimate is requested, then no estimate is returned and a clear recovery message prompts selecting a supported procedure.",
+          "labels": [],
+          "descriptionHash": "a8469ba1bcc1c1540de1da665067ba95a89dd8eb",
+          "status": "created",
+          "key": "CXINIT2-2731",
+          "createdAt": "2026-03-13T07:29:59.923Z",
+          "updatedAt": "2026-03-13T07:29:59.923Z"
+        }
+      ],
+      "nfrTasks": [
+        {
+          "summary": "Performance target for estimate retrieval",
+          "issueType": "Task",
+          "description": "Ensure estimate retrieval meets P95 response time under 300ms for supported procedures at expected demo load. Validate with reproducible benchmark report.",
+          "labels": [],
+          "descriptionHash": "16acc767f3f4f317d66605439be8f3c47f9bde29",
+          "status": "created",
+          "key": "CXINIT2-2732",
+          "createdAt": "2026-03-13T07:30:01.638Z",
+          "updatedAt": "2026-03-13T07:30:01.638Z"
+        },
+        {
+          "summary": "No-PII enforcement across estimator flow",
+          "issueType": "Task",
+          "description": "Verify no PII is collected, persisted, or transmitted in estimator requests, logs, storage, and outbound traffic.",
+          "labels": [],
+          "descriptionHash": "6fdd657884f17085ff116a42397f588274b61f13",
+          "status": "created",
+          "key": "CXINIT2-2733",
+          "createdAt": "2026-03-13T07:30:03.783Z",
+          "updatedAt": "2026-03-13T07:30:03.783Z"
+        },
+        {
+          "summary": "Synthetic-data-only enforcement for Phase 1",
+          "issueType": "Task",
+          "description": "Validate that estimate calculations use synthetic datasets only and do not call enterprise claims or benefits APIs.",
+          "labels": [],
+          "descriptionHash": "485f1f2bcb8653f4cc22de34305a819db0fc0248",
+          "status": "created",
+          "key": "CXINIT2-2734",
+          "createdAt": "2026-03-13T07:30:05.777Z",
+          "updatedAt": "2026-03-13T07:30:05.777Z"
+        },
+        {
+          "summary": "WCAG 2.1 AA accessibility validation",
+          "issueType": "Task",
+          "description": "Validate procedure selection, tier switching, estimate display, and error states against WCAG 2.1 AA with automated and manual checks.",
+          "labels": [],
+          "descriptionHash": "916a487acb54a5506c71074cc54b8448c080bc88",
+          "status": "created",
+          "key": "CXINIT2-2735",
+          "createdAt": "2026-03-13T07:30:07.580Z",
+          "updatedAt": "2026-03-13T07:30:07.580Z"
+        },
+        {
+          "summary": "Compliance disclaimer visibility validation",
+          "issueType": "Task",
+          "description": "Validate that approved disclaimer text is visible on every estimate result state and persists through tier changes.",
+          "labels": [],
+          "descriptionHash": "fb01fa61b2609493baf8473b158189cdf6ace193",
+          "status": "created",
+          "key": "CXINIT2-2736",
+          "createdAt": "2026-03-13T07:30:09.253Z",
+          "updatedAt": "2026-03-13T07:30:09.254Z"
+        }
+      ]
+    }
+  ]
+}

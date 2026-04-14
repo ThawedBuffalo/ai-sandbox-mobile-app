@@ -1,0 +1,21 @@
+{
+	"servers": {
+		"miro": {
+			"url": "https://mcp.miro.com/",
+			"type": "http"
+		},
+		"devconn-jira-mcp": {
+			"type": "stdio",
+			"command": "node",
+			"args": [
+				"${workspaceFolder}/.github/skills/jira-mcp-server/server.js"
+			],
+			"env": {}
+		},
+		"figma": {
+			"url": "https://mcp.figma.com/mcp",
+			"type": "http"
+		}
+	},
+	"inputs": []
+}

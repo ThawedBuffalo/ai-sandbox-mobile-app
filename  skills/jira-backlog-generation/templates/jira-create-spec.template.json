@@ -1,0 +1,33 @@
+{
+  "prdPath": "20-product/prd-<initiative-slug>.md",
+  "projectKey": "<JIRA_PROJECT_KEY>",
+  "run": {
+    "dryRun": true,
+    "storySummariesToCreate": [],
+    "nfrSummariesToCreate": []
+  },
+  "labels": ["<initiative-label>", "<team-label>"],
+  "epic": {
+    "issueType": "Feature",
+    "summary": "<Epic Summary>",
+    "epicName": "<Epic Name>",
+    "description": "<Problem statement, scope, expected outcome, and key constraints.>"
+  },
+  "stories": [
+    {
+      "summary": "<Story 1 Summary>",
+      "description": "<As a ..., I want ..., so that ...>\n\nAcceptance criteria: <Given/When/Then scenarios as plain text or condensed form.>"
+    },
+    {
+      "summary": "<Story 2 Summary>",
+      "description": "<As a ..., I want ..., so that ...>\n\nAcceptance criteria: <Given/When/Then scenarios as plain text or condensed form.>"
+    }
+  ],
+  "nfrTasks": [
+    {
+      "summary": "<NFR Task Summary>",
+      "issueType": "Task",
+      "description": "<Performance/security/reliability/accessibility validation task details.>"
+    }
+  ]
+}

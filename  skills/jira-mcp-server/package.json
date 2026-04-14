@@ -1,0 +1,13 @@
+{
+  "name": "devconn-jira-mcp",
+  "version": "1.0.0",
+  "description": "Local Jira MCP server for DevConn project",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.22.0"
+  }
+}

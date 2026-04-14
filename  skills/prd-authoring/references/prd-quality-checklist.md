@@ -1,0 +1,6 @@
+- Problem is clearly stated
+- Requirements are testable
+- Scope boundaries are explicit
+- Assumptions are documented
+- Risks and dependencies identified
+- Clear handoff to engineering
