@@ -1,8 +1,7 @@
-# DevConn Demo 2: AI SDLC Accelerator Artifacts
+# BMAD Method w/ additional JIRA and Miro MCPs
 
 This repository is an **AI-powered accelerator** that turns requirements into production-ready application scaffolds using governed enterprise agents and skills.
-
-The Dental Procedure Cost Estimator content is an **example implementation** that demonstrates how to use the accelerator's agent workflows and reusable skills.
+-adding PRD and requirement gathering agents, plus scripted MCPs for Jira and Miro to automate architecture and security review workflows
 
 ## What This Repo Contains
 
@@ -21,19 +20,19 @@ The current artifacts include a Phase 1 demo context. These are project-specific
 - Targets **P95 < 300 ms** response time
 
 Primary PRD:
-- `20-product/prd-dental-cost-estimator.md`
+- `output/20-product/prd-dental-cost-estimator.md`
 
 ## Repository Structure
 
-- `10-business-ask/` business request inputs
-- `20-product/` PRDs and Jira create specs
-- `30-ux-design/` UX brief, user flows, wireframe specs
-- `40-architecture/` ADD and architecture link registry
-- `50-security/` SSD and security link registry
-- `60-approvals/` approval artifacts
-- `70-implementation/` sprint plan and refinement notes
-- `07-testing/` test outputs
-- `80-release/` release notes draft
+- `output/10-business-ask/` business request inputs
+- `output/20-product/` PRDs and Jira create specs
+- `output/30-ux-design/` UX brief, user flows, wireframe specs
+- `output/40-architecture/` ADD and architecture link registry
+- `output/50-security/` SSD and security link registry
+- `output/60-approvals/` approval artifacts
+- `output/70-implementation/` sprint plan and refinement notes
+- `output/07-testing/` test outputs
+- `output/80-release/` release notes draft
 - `.github/agents/` reusable agent definitions
 - `.github/skills/` reusable skill definitions (including local Jira MCP server)
 - `.github/scripts/` automation scripts (Confluence publish, etc.)
